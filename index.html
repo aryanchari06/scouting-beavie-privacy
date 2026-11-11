@@ -67,8 +67,8 @@
   </tr>
   <tr>
     <td>Install ID (a random UUID the extension generates when you first install it)</td>
-    <td>To apply daily usage limits and prevent abuse without requiring you to sign in.</td>
-    <td>Yes, stored locally in your browser and temporarily in our rate-limit counter table (see below).</td>
+    <td>To count total extension installations/users, apply daily usage limits, and prevent abuse without requiring you to sign in.</td>
+    <td>Yes, stored locally in your browser and on our servers (see below).</td>
   </tr>
   <tr>
     <td>IP address</td>
@@ -86,8 +86,8 @@
 <h2>How long we keep data</h2>
 <ul>
   <li><strong>Resume text and file name:</strong> Kept only on your device inside Chrome&rsquo;s local extension storage (<code>chrome.storage.local</code>) until you replace your resume or uninstall the extension. Never stored on our servers.</li>
-  <li><strong>Install ID:</strong> Kept locally in your browser for as long as the extension remains installed. On our servers, daily request counters linked to your Install ID are automatically deleted after 2 days (48 hours).</li>
-  <li><strong>IP address and usage counts:</strong> Stored in AWS DynamoDB solely to enforce daily quotas and automatically deleted after 2 days (48 hours) via Time-to-Live (TTL) expiration.</li>
+  <li><strong>Install ID:</strong> Kept locally in your browser for as long as the extension remains installed, and stored indefinitely (without automatic expiration) in a dedicated table on our servers to keep track of the total number of installations/users unless you request its deletion. Daily rate-limit counters associated with your Install ID are stored separately and automatically deleted after 2 days (48 hours).</li>
+  <li><strong>IP address and daily usage counts:</strong> Stored in AWS DynamoDB solely to enforce daily quotas and automatically deleted after 2 days (48 hours) via Time-to-Live (TTL) expiration.</li>
 </ul>
 
 <h2>What we do not do</h2>
@@ -104,7 +104,7 @@
 <h2>Your choices</h2>
 <ul>
   <li>You can replace your locally saved resume at any time from the extension popup, or uninstall the extension to immediately remove all locally stored data from your browser.</li>
-  <li>To ask us to delete any active rate-limit counter linked to your Install ID or IP address before its automatic 48-hour expiration, email us at the address below. Include your Install ID if you know it.</li>
+  <li>To ask us to delete your Install ID record or any active rate-limit counter linked to your Install ID or IP address from our servers, email us at the address below. Include your Install ID if you know it.</li>
 </ul>
 
 <h2>Changes to this policy</h2>

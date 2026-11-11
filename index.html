@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scouting Beavie Privacy Policy</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1f2328;
+    --muted: #59636e;
+    --line: #d1d9e0;
+    --link: #0b5fd6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a;
+      --text: #e6e8ea;
+      --muted: #9aa4ad;
+      --line: #2c3238;
+      --link: #6aa8ff;
+    }
+  }
+  html { background: var(--bg); }
+  body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 2.2em 0 0.4em; }
+  p, ul { margin: 0.7em 0; }
+  li { margin: 0.35em 0; }
+  .updated { color: var(--muted); margin: 0 0 2em; }
+  a { color: var(--link); }
+  table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.95rem; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  th { font-weight: 700; }
+  .scroll { overflow-x: auto; }
+</style>
+</head>
+<body>
+
+<h1>Scouting Beavie Privacy Policy</h1>
+<p class="updated">Last updated: 12 November 2026</p>
+
+<p>Scouting Beavie is a Chrome extension that reads job listings on the page you are viewing, compares them with the resume you upload, and shows how well you fit each role. This policy explains what data Scouting Beavie handles and why.</p>
+
+<h2>What Scouting Beavie handles</h2>
+<div class="scroll">
+<table>
+  <tr><th>Data</th><th>Why we need it</th><th>Stored?</th></tr>
+  <tr>
+    <td>Your resume (PDF you upload)</td>
+    <td>To extract the text and compare it with job listings.</td>
+    <td>No on our servers. The PDF is processed in memory to extract text and is never stored on our servers. The extracted resume text and file name are stored locally in your own browser (<code>chrome.storage.local</code>) so you do not have to re-upload your resume every time.</td>
+  </tr>
+  <tr>
+    <td>Job listing text from the page you ask Scouting Beavie to check</td>
+    <td>To score how well your resume fits the role.</td>
+    <td>No. It is processed in memory to answer your request and is not stored.</td>
+  </tr>
+  <tr>
+    <td>Install ID (a random UUID the extension generates when you first install it)</td>
+    <td>To apply daily usage limits and prevent abuse without requiring you to sign in.</td>
+    <td>Yes, stored locally in your browser and temporarily in our rate-limit counter table (see below).</td>
+  </tr>
+  <tr>
+    <td>IP address</td>
+    <td>To apply daily usage limits and prevent abuse.</td>
+    <td>Yes, temporarily for rate-limiting (see below).</td>
+  </tr>
+</table>
+</div>
+
+<p>Scouting Beavie does not ask for your name, email address, or account details, and you do not need to sign in to use it.</p>
+
+<h2>How your data is processed</h2>
+<p>When you ask Scouting Beavie to parse your resume or match a job, the relevant text is sent over HTTPS to our serverless backend running on Amazon Web Services (AWS). To produce the job match result, the extracted resume text and job listing text are sent to <strong>Amazon Bedrock (Amazon Nova Pro)</strong>, which processes the request on our behalf in real time. Your data is not stored by the model and is not used to train AI models.</p>
+
+<h2>How long we keep data</h2>
+<ul>
+  <li><strong>Resume text and file name:</strong> Kept only on your device inside Chrome&rsquo;s local extension storage (<code>chrome.storage.local</code>) until you replace your resume or uninstall the extension. Never stored on our servers.</li>
+  <li><strong>Install ID:</strong> Kept locally in your browser for as long as the extension remains installed. On our servers, daily request counters linked to your Install ID are automatically deleted after 2 days (48 hours).</li>
+  <li><strong>IP address and usage counts:</strong> Stored in AWS DynamoDB solely to enforce daily quotas and automatically deleted after 2 days (48 hours) via Time-to-Live (TTL) expiration.</li>
+</ul>
+
+<h2>What we do not do</h2>
+<ul>
+  <li>We do not sell your data.</li>
+  <li>We do not use your data for advertising.</li>
+  <li>We do not share your data with third parties, except the AWS cloud infrastructure services named above that process requests on our behalf.</li>
+  <li>We do not use your data for anything unrelated to the extension&rsquo;s single purpose of matching resumes to job listings.</li>
+</ul>
+
+<h2>Permissions</h2>
+<p>Scouting Beavie uses the <code>storage</code> permission to keep your extracted resume text and anonymous Install ID locally in your browser, and runs its content script on supported job pages (such as <code>in.indeed.com</code>) only to read the job opening you are viewing and display the match widget. It does not track your browsing history.</p>
+
+<h2>Your choices</h2>
+<ul>
+  <li>You can replace your locally saved resume at any time from the extension popup, or uninstall the extension to immediately remove all locally stored data from your browser.</li>
+  <li>To ask us to delete any active rate-limit counter linked to your Install ID or IP address before its automatic 48-hour expiration, email us at the address below. Include your Install ID if you know it.</li>
+</ul>
+
+<h2>Changes to this policy</h2>
+<p>If we change how Scouting Beavie handles data, we will update this page and the date at the top.</p>
+
+<h2>Contact</h2>
+<p>Questions or deletion requests: <a href="mailto:aryaney0704@gmail.com">aryaney0704@gmail.com</a></p>
+
+</body>
+</html>
